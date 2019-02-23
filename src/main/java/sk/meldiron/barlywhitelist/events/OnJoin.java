@@ -10,7 +10,7 @@ import sk.meldiron.barlywhitelist.libs.Utils;
 public class OnJoin implements Listener {
     @EventHandler
     public void On(PlayerJoinEvent e) {
-        SQL.getInstance().exec("SELECT 1 FROM users WHERE uuid = ?", (st) -> {
+        SQL.getInstance().exec("SELECT 1 FROM users WHERE minecraft_uuid = ?", (st) -> {
             st.setString(1, e.getPlayer().getUniqueId().toString().replace("-", ""));
         }, ((con, st, res) -> {
             try {
