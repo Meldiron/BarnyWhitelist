@@ -338,11 +338,10 @@ public class SQL {
     private void openSqliteConnection() {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl("jdbc:sqlite:" + Main.i.getDataFolder().getAbsolutePath() + "/database.db");
-        config.setMaximumPoolSize(10);
+        config.setMaximumPoolSize(1);
         config.setIdleTimeout(60000);
 
         connectionLocal = new HikariDataSource(config);
-        connectionLocal.setMaximumPoolSize(10);
     }
 
     private void openMysqlConnection() {
@@ -350,7 +349,7 @@ public class SQL {
         config.setJdbcUrl("jdbc:mysql://" + this.host + ":" + this.port + "/" + this.database);
         config.setUsername(this.username);
         config.setPassword(this.password);
-        config.setMaximumPoolSize(10);
+        config.setMaximumPoolSize(2);
         config.setIdleTimeout(60000);
         config.addDataSourceProperty("useSSL", "false");
         config.addDataSourceProperty("cachePrepStmts", "true");
@@ -358,7 +357,6 @@ public class SQL {
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
 
         connectionRemote = new HikariDataSource(config);
-        connectionRemote.setMaximumPoolSize(10);
 
     }
 
