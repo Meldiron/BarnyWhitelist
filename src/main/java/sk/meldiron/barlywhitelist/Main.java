@@ -30,7 +30,7 @@ public final class Main extends JavaPlugin implements Listener {
 
     private HashMap<String, UJsonObject> configsObjs = new HashMap<String, UJsonObject>(){{
         put("config", new UJsonObject(){{
-            put("pw", "tAGogEorONsiNEsTeRserAbOUScOmperxermaThe");
+            put("pw", "SECRET");
             put("mysql", new UJsonObject(){{
                put("host", "localhost");
                put("user", "root");
