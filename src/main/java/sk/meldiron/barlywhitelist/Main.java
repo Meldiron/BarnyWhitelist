@@ -4,6 +4,7 @@ import fr.minuskube.inv.InventoryManager;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import sk.meldiron.barlywhitelist.events.OnJoin;
+import sk.meldiron.barlywhitelist.events.OnLeave;
 import sk.meldiron.barlywhitelist.libs.JSONConfig;
 import sk.meldiron.barlywhitelist.libs.MelCommand;
 import sk.meldiron.barlywhitelist.libs.SQL;
@@ -19,6 +20,7 @@ public final class Main extends JavaPlugin implements Listener {
 
     private ArrayList<Listener> events = new ArrayList<Listener>(){{
         add(new OnJoin());
+        add(new OnLeave());
     }};
 
     private HashMap<String, MelCommand> cmds = new HashMap(){{
@@ -27,14 +29,15 @@ public final class Main extends JavaPlugin implements Listener {
 
     private HashMap<String, UJsonObject> configsObjs = new HashMap<String, UJsonObject>(){{
         put("config", new UJsonObject(){{
-           put("mysql", new UJsonObject(){{
+            put("pw", "tAGogEorONsiNEsTeRserAbOUScOmperxermaThe");
+            put("mysql", new UJsonObject(){{
                put("host", "localhost");
                put("user", "root");
                put("password", "");
                put("database", "mc");
                put("port", 3306);
                put("enabled", true);
-           }});
+            }});
        }});
 
        put("translations", new UJsonObject(){{
@@ -107,9 +110,7 @@ public final class Main extends JavaPlugin implements Listener {
             UJsonObject configObj = configsObjs.get(cfgName);
 
             cfg.addInitFunc(json -> {
-                System.out.println(json);
                 UJsonObject newObj = UJsonObject.deepMerge(json, configObj);
-                System.out.println(newObj);
                 return newObj;
             });
 
