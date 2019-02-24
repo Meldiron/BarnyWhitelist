@@ -4,6 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
+import sk.meldiron.barlywhitelist.Main;
 import sk.meldiron.barlywhitelist.libs.SQL;
 import sk.meldiron.barlywhitelist.libs.Utils;
 
@@ -17,6 +18,11 @@ public class OnJoin implements Listener {
                 if(res.next()) {
                     // is allowed to join
                 } else {
+                    if(Main.i.config.getData().getArray("allowedUuids").getStrings().contains(e.getPlayer().getUniqueId().toString().replace("-", ""))) {
+                        // is allowed to join, is on whitelist in config
+                        return;
+                    }
+
                     e.getPlayer().kickPlayer(Utils.msg("kickMsg"));
                 }
 

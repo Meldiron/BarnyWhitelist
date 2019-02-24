@@ -8,6 +8,7 @@ import sk.meldiron.barlywhitelist.events.OnLeave;
 import sk.meldiron.barlywhitelist.libs.JSONConfig;
 import sk.meldiron.barlywhitelist.libs.MelCommand;
 import sk.meldiron.barlywhitelist.libs.SQL;
+import sk.meldiron.barlywhitelist.libs.U.UJsonArray;
 import sk.meldiron.barlywhitelist.libs.U.UJsonObject;
 import sk.meldiron.barlywhitelist.libs.Utils;
 
@@ -37,6 +38,10 @@ public final class Main extends JavaPlugin implements Listener {
                put("database", "mc");
                put("port", 3306);
                put("enabled", true);
+            }});
+
+            put("allowedUuids", new UJsonArray(){{
+                add("38d6e62f5f824d98abb88b5ff42a4873");
             }});
        }});
 
